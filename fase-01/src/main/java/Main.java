@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        tablaMultiplicar();
+        analizarLetras();
 
     }
 
@@ -74,5 +74,40 @@ public class Main {
             int mult = (i * num);
             System.out.println(String.format("%5d x %5d = %5d",num,i,mult));
         }
+    }
+
+    public static void analizarLetras(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Introduce una frase");
+        String palabra = sc.nextLine().toLowerCase();
+        int total = 0;
+        int totalVocales = 0;
+        StringBuilder sb = new StringBuilder("");
+
+
+        for (int i = 0; i < palabra.length(); i++){
+            if(palabra.charAt(i) != ' '){
+                total++;
+                sb.append(palabra.charAt(i));
+            }
+            if(palabra.charAt(i) == 'a' || (palabra.charAt(i) == 'e' || (palabra.charAt(i) == 'i' || (palabra.charAt(i) == 'o' || (palabra.charAt(i) == 'u'))))) {
+                totalVocales++;
+            }
+        }
+        StringBuilder reversesb = new StringBuilder(sb);
+        reversesb.reverse();
+        if(sb.toString().equals(reversesb.toString())){
+            System.out.println("Es palindromo");
+        }else{
+            System.out.println("No es palindromo");
+        }
+
+        System.out.println(sb);
+        System.out.println(reversesb);
+        System.out.println(String.format("Total de letras de la palabra: %5d",total));
+        System.out.println(String.format("Total de vocales de la palabra: %5d",totalVocales));
+        System.out.println("Palabra en mayusculas: " + palabra.toUpperCase());
+        System.out.println("Palabra en minusculas: " + palabra.toLowerCase());
+
     }
 }
