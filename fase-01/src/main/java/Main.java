@@ -1,9 +1,10 @@
 import javax.swing.plaf.synth.SynthOptionPaneUI;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        calificaciones();
+        temperaturas();
 
     }
 
@@ -139,5 +140,56 @@ public class Main {
             System.out.println(reporte);
             System.out.println(String.format("La calificacion mas alta es de %.2f", masAlta));
             System.out.println(String.format("La calificacion mas baja es de %.2f", masBaja));
+    }
+
+    public static void temperaturas(){
+        double[][] temperaturas = {
+                {25.0,24.0,41.0},
+                {22.0,25.0,21.0},
+                {42.0,26.0,15.0},
+                {25.0,21.0,14.0},
+                {22.0,24.0,12.0},
+                {26.0,26.0,11.0},
+                {21.0,19.0,10.0},
+        };
+        String nombreDia = "";
+        String momentoDia = "";
+        double totalMomento = 0.0;
+        double promedio;
+        double diaCaluroso = temperaturas[0][0];
+        double diaFrio = temperaturas[0][0];
+
+
+        for (int dia = 0; dia < 7; dia++){
+
+
+            switch(dia){
+                case 0: nombreDia = "Lunes"; break;
+                case 1: nombreDia = "Martes"; break;
+                case 2: nombreDia = "Miercoles"; break;
+                case 3: nombreDia = "Jueves"; break;
+                case 4: nombreDia = "Viernes"; break;
+                case 5: nombreDia = "Sabado"; break;
+                case 6: nombreDia = "Domingo"; break;
+            }
+            for(int momento = 0; momento < 3; momento++){
+                totalMomento += temperaturas[dia][momento];
+                switch(momento){
+                    case 0: momentoDia = "Amanecer"; break;
+                    case 1: momentoDia = "Tarde"; break;
+                    case 2: momentoDia = "Noche"; break;
+                }
+                System.out.println("Dia: " + nombreDia + " Momento del dia: " + momentoDia);
+                System.out.println("Temperaturas: " + temperaturas[dia][momento]);
+            }
+            promedio = totalMomento / 3;
+            System.out.println("Promedio de " + nombreDia + ": " + promedio);
+            diaFrio = Math.min(diaFrio, promedio);
+            diaCaluroso = Math.max(diaCaluroso, promedio);
+            totalMomento = 0.0;
+        };
+
+        System.out.println("El dia mas caluroso es " + diaCaluroso);
+        System.out.println("El dia mas frio es " + diaFrio);
     }
 }
