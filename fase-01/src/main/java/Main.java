@@ -1,8 +1,9 @@
+import javax.swing.plaf.synth.SynthOptionPaneUI;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        analizarLetras();
+        calificaciones();
 
     }
 
@@ -109,5 +110,34 @@ public class Main {
         System.out.println("Palabra en mayusculas: " + palabra.toUpperCase());
         System.out.println("Palabra en minusculas: " + palabra.toLowerCase());
 
+    }
+
+    public static void calificaciones(){
+            String[] nombres = {"Antonio","Miguel","Salvador","Raul","Jorge"};
+            Double[] calificaciones = {50.55,10.00,70.10,40.22,70.52};
+            double totalCalificaciones = 0.0;
+            double promedio;
+            double masAlta = calificaciones[0];
+            double masBaja = calificaciones[0];
+            StringBuilder reporte = new StringBuilder();
+            for(int i = 0; i < calificaciones.length; i++){
+                totalCalificaciones += calificaciones[i];
+            }
+            for (int i = 0; i < nombres.length; i++){
+                masAlta = Math.max(masAlta, calificaciones[i]);
+                masBaja = Math.min(masBaja, calificaciones[i]);
+                if (calificaciones[i] >= 60.00){
+                    reporte.append(nombres[i] + " " + calificaciones[i] + " APROBADO").append("\n");
+
+                }else{
+                    reporte.append(nombres[i] + " " + calificaciones[i] + " REPROBADO").append("\n");
+                }
+            }
+
+            promedio = totalCalificaciones / calificaciones.length;
+            System.out.println(String.format("El promedio total de las calificaciones es de %.2f", promedio));
+            System.out.println(reporte);
+            System.out.println(String.format("La calificacion mas alta es de %.2f", masAlta));
+            System.out.println(String.format("La calificacion mas baja es de %.2f", masBaja));
     }
 }
