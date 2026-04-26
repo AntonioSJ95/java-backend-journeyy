@@ -4,9 +4,14 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        temperaturas();
-
+        Animal perro = new Perro("Bruno");
+        perro.saludar();
+        perro.hacerSonido();
+        perro.despedirse();
+        perro.dormir();
     }
+
+
 
     public static void calentamiento(){
         String name = "Antonio";
@@ -192,4 +197,5 @@ public class Main {
         System.out.println("El dia mas caluroso es " + diaCaluroso);
         System.out.println("El dia mas frio es " + diaFrio);
     }
+    
 }
